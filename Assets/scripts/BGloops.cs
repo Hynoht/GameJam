@@ -14,7 +14,7 @@ public class BGloops : MonoBehaviour
 	void Update()
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
-		if (transform.position.x < -32.012f)
+		if (transform.position.x < -32f)
 			transform.position = startPosition;
 	}
 }

@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 	
 	public void	reLoad()
 	{
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(0);
 	}
 
 	public void pause()

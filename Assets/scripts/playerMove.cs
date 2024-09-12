@@ -15,10 +15,6 @@ public class playerMove : MonoBehaviour
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
-    void Start()
-    {
-        
-    }
     void Update()
     {
 		if (transform.position.y >= 15 && isDead == true)
