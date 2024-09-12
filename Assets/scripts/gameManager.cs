@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,8 +12,9 @@ public class GameManager : MonoBehaviour
 	public GameObject	score;
 	public GameObject	playPanel;
 	public GameObject	pausePanel;
-	public GameObject	world1;
-	public GameObject	world2;
+	public Image		panelHome;
+	public Image		panelPlay;
+	public Image		panelGameOver;
 	public bool			isMute = false;
 	public bool			isPaused = false;
 	public bool			start = false;
@@ -20,12 +22,7 @@ public class GameManager : MonoBehaviour
 	static int 	i;
     void Start()
     {
-		/*sound = GetComponent<AudioSource>();
-		if (!sound.isPlaying)
-		{
-			sound.Play();
-		}*/
-		world2.SetActive(false);
+		start = true;
         Time.timeScale = 0;
 		if (i >= 1)
 			isStart();
@@ -36,9 +33,10 @@ public class GameManager : MonoBehaviour
 	{
 		openPanelPlay = true;
 		gameOver.SetActive(true);
-		Time.timeScale = 0;
-		start = false;
 		pausePanel.SetActive(false);
+		score.SetActive(false);
+		start = false;
+		Time.timeScale = 0;
 	}
 
 	public void isStart()
@@ -48,12 +46,16 @@ public class GameManager : MonoBehaviour
 		pausePanel.SetActive(true);
 		gameStart.SetActive(false);
 		Time.timeScale = 1;
-		start = true;
+		if (start == false)
+		{
+			start = true;
+			reLoad();
+		}
 	}
 	
 	public void	reLoad()
 	{
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
 	}
 
 	public void pause()
@@ -70,19 +72,17 @@ public class GameManager : MonoBehaviour
 		playPanel.SetActive(false);
 	}
 
-	public void isWorld1()
+	public void Menu()
 	{
-		world2.SetActive(false);
-		world1.SetActive(true);
+		gameStart.SetActive(true);
+		gameOver.SetActive(false);
 	}
 
-	public void isWorld2()
-	{
-		world1.SetActive(false);
-		world2.SetActive(true);
-	}
-
-	public void Sounds()
-	{
-	}
+	public void Quit()
+    {
+        Application.Quit();
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }
