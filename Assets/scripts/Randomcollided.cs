@@ -31,7 +31,7 @@ public class collidedMove : MonoBehaviour
 			}
 		}
 		time += Time.deltaTime;
-		if (time % modulo >= 2f)
+		if (time % modulo >= 1.9f)
 		{
 			AddNewObject();
 			time = 0;
